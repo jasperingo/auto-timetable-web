@@ -8,4 +8,5 @@ import { RouterView } from "vue-router";
 
 <style>
 @import "@/assets/css/base.css";
+@import "vue-toastification/dist/index.css";
 </style>
