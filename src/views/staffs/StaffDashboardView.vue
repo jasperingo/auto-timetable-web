@@ -5,5 +5,9 @@ const userStore = useUserStore();
 </script>
 
 <template>
-  <div>Welcome {{ userStore.userId }}</div>
+  <main>
+    <div class="container">
+      <div>Welcome {{ userStore.userId }}</div>
+    </div>
+  </main>
 </template>

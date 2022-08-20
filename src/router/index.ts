@@ -26,13 +26,13 @@ const router = createRouter({
       path: "/staffs",
       name: "staff",
       component: () => import("@/views/staffs/StaffIndexView.vue"),
-      beforeEnter() {
-        const userStore = useUserStore();
+      // beforeEnter() {
+      //   const userStore = useUserStore();
 
-        if (userStore.userId === 0) {
-          return { name: "staff-login" };
-        }
-      },
+      //   if (userStore.userId === 0) {
+      //     return { name: "staff-login" };
+      //   }
+      // },
       children: [
         {
           alias: "",

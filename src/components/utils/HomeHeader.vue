@@ -3,7 +3,7 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
-  <header class="py-4 border">
+  <header class="py-4 border-b">
     <div class="container">
       <div class="flex gap-x-2 items-center justify-center">
         <img
