@@ -11,7 +11,7 @@ defineProps<{
   <li>
     <RouterLink
       :to="item.href"
-      class="block border-l-4 border-b border-l-green-700 p-1 hover:bg-green-200"
+      class="block border-l-4 border-b border-l-green-700 py-1 px-2 hover:bg-green-200"
     >
       {{ item.text }}
     </RouterLink>

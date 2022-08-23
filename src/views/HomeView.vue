@@ -15,7 +15,7 @@ import HomeHeader from "../components/utils/HomeHeader.vue";
           </p>
           <ul class="flex gap-x-4">
             <HomeLoginLink text="Student login" href="" />
-            <HomeLoginLink text="Staff login" href="/staffs/login" />
+            <HomeLoginLink text="Staff login" href="/staff/login" />
           </ul>
         </div>
         <div class="py-8">

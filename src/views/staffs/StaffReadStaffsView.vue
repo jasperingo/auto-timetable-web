@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { useUserStore } from "@/stores/user";
 import SubHeader from "@/components/utils/SubHeader.vue";
-
-const userStore = useUserStore();
 </script>
 
 <template>
   <main>
     <div class="container">
-      <SubHeader text="Dashboard" />
-      <div>Welcome {{ userStore.userId }}</div>
+      <SubHeader text="Staffs" />
+      <div>View staffs</div>
     </div>
   </main>
 </template>

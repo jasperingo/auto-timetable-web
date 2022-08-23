@@ -5,12 +5,8 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     text: "Dashboard",
     subLinks: [
       {
-        href: "",
-        text: "View timetables",
-      },
-      {
-        href: "",
-        text: "Generate timetable",
+        href: "/staff/dashboard",
+        text: "Admin dashboard",
       },
     ],
   },
@@ -18,14 +14,57 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     text: "Staff",
     subLinks: [
       {
-        href: "",
+        href: "/staff/staffs",
         text: "View staffs",
       },
       {
-        href: "",
+        href: "/staff/staffs/create",
         text: "Add staff",
       },
     ],
+  },
+  {
+    text: "Student",
+    subLinks: [
+      {
+        href: "",
+        text: "View students",
+      },
+      {
+        href: "",
+        text: "Add student",
+      },
+    ],
+  },
+  {
+    text: "Department",
+    subLinks: [
+      {
+        href: "",
+        text: "View departments",
+      },
+      {
+        href: "",
+        text: "Add department",
+      },
+    ],
+  },
+  {
+    text: "Hall",
+    subLinks: [
+      {
+        href: "",
+        text: "View halls",
+      },
+      {
+        href: "",
+        text: "Add hall",
+      },
+    ],
+  },
+  {
+    text: "Course",
+    subLinks: [],
   },
 ];
 

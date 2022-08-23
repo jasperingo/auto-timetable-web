@@ -3,7 +3,7 @@ defineProps<{ text: string; loading?: boolean }>();
 </script>
 
 <template>
-  <div>
+  <div class="mt-4">
     <button
       type="submit"
       class="block w-full font-bold bg-green-700 text-white rounded-lg p-2 hover:bg-green-500 disabled:bg-green-400"

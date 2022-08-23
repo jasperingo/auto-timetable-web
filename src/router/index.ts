@@ -11,7 +11,7 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/staffs/login",
+      path: "/staff/login",
       name: "staff-login",
       component: () => import("@/views/staffs/StaffLoginView.vue"),
       beforeEnter() {
@@ -23,7 +23,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/staffs",
+      path: "/staff",
       name: "staff",
       component: () => import("@/views/staffs/StaffIndexView.vue"),
       // beforeEnter() {
@@ -39,6 +39,16 @@ const router = createRouter({
           path: "dashboard",
           name: "staff-dashboard",
           component: () => import("@/views/staffs/StaffDashboardView.vue"),
+        },
+        {
+          path: "staffs/create",
+          name: "staff-create-staff",
+          component: () => import("@/views/staffs/StaffCreateStaffView.vue"),
+        },
+        {
+          path: "staffs",
+          name: "staff-view-staff",
+          component: () => import("@/views/staffs/StaffReadStaffsView.vue"),
         },
       ],
     },

@@ -7,6 +7,7 @@ const props = defineProps<{
   id: string;
   label: string;
   type?: string;
+  error?: string;
   modelValue: string;
   required?: boolean;
   minlength?: number;
@@ -43,7 +44,7 @@ const onInput = (event: Event) => {
       :value="modelValue"
       :minlength="minlength"
       :required="required ?? true"
-      class="p-2 border border-green-700 rounded-lg outline-none w-full focus:border-2 disabled:bg-gray-200"
+      class="p-2 border border-green-700 rounded-lg outline-none w-full bg-white focus:border-2 disabled:bg-gray-200"
     />
     <div v-if="type === 'password'">
       <input
@@ -56,5 +57,6 @@ const onInput = (event: Event) => {
         {{ showPasswordInputLabel }}
       </label>
     </div>
+    <div class="text-red-700 text-sm">{{ error }}</div>
   </div>
 </template>

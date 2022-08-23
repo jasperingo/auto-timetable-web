@@ -5,7 +5,7 @@ import UserIcon from "vue-material-design-icons/AccountCircle.vue";
 import DashboardTopNavLink from "@/components/utils/DashboardTopNavLink.vue";
 import { ref } from "vue";
 import { useStaffDashboardNavItems } from "@/composables/utils/staff-dashboard-nav-items-composable";
-import DashboardNavLink from "../../components/utils/DashboardNavLink.vue";
+import DashboardNavLink from "@/components/utils/DashboardNavLink.vue";
 
 const showNav = ref(false);
 const showTopNav = ref(false);
@@ -61,7 +61,7 @@ const toggleTopNav = () => (showTopNav.value = !showTopNav.value);
 
   <nav
     :class="{ hidden: !showNav }"
-    class="fixed w-3/4 h-full overflow-auto bg-white border-r-2 lg:block lg:w-72"
+    class="fixed w-3/4 h-full pb-16 overflow-auto bg-white border-r-2 lg:block lg:w-72"
   >
     <ul class="py-4">
       <DashboardNavLink
