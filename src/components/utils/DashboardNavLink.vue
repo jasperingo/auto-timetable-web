@@ -9,6 +9,8 @@ defineProps<{
   item: DashboardNavLinkType;
 }>();
 
+defineEmits(["linkClicked"]);
+
 const showSubLinks = ref(false);
 
 const toggleSubLinks = () => (showSubLinks.value = !showSubLinks.value);
@@ -29,6 +31,7 @@ const toggleSubLinks = () => (showSubLinks.value = !showSubLinks.value);
         v-for="subItem in item.subLinks"
         :key="subItem.text"
         :item="subItem"
+        @link-clicked="$emit('linkClicked')"
       />
     </ul>
   </li>

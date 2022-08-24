@@ -1,3 +1,4 @@
+import { useAuthSessionStore } from "@/composables/auth/auth-session-store-composable";
 import { useUserStore } from "@/stores/user";
 import { AuthService } from "@/web-services/auth-service";
 import { watch } from "vue";
@@ -5,6 +6,8 @@ import { useMutation } from "vue-query";
 
 export function useStaffAuth() {
   const userStore = useUserStore();
+
+  const authSessionStore = useAuthSessionStore();
 
   const validate = (
     staffNumber: ValidityState | null,
@@ -23,7 +26,9 @@ export function useStaffAuth() {
       mutationParams.isSuccess.value &&
       mutationParams.data.value !== undefined
     ) {
-      userStore.setStaffAuth(mutationParams.data.value.data);
+      const auth = mutationParams.data.value.data;
+      userStore.setStaffAuth(auth);
+      authSessionStore.save(auth.staffId, auth.accessToken);
     }
   });
 

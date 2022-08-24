@@ -10,4 +10,8 @@ export const StaffService = {
   create(form: CreateStaffType, accessToken: string) {
     return BaseService.postJson<Staff>("staffs", form, accessToken);
   },
+
+  read(id: number | string, accessToken: string) {
+    return BaseService.query<Staff>(`staffs/${id}`, accessToken);
+  },
 };

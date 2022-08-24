@@ -3,15 +3,20 @@ import { computed, ref } from "vue";
 
 const emit = defineEmits(["update:modelValue", "validityChange"]);
 
-const props = defineProps<{
-  id: string;
-  label: string;
-  type?: string;
-  error?: string;
-  modelValue: string;
-  required?: boolean;
-  minlength?: number;
-}>();
+const props = withDefaults(
+  defineProps<{
+    id: string;
+    label: string;
+    type?: string;
+    error?: string;
+    modelValue: string;
+    required?: boolean;
+    minlength?: number;
+  }>(),
+  {
+    required: true,
+  }
+);
 
 const showPassword = ref(false);
 
@@ -43,7 +48,7 @@ const onInput = (event: Event) => {
       :type="inputType"
       :value="modelValue"
       :minlength="minlength"
-      :required="required ?? true"
+      :required="required"
       class="p-2 border border-green-700 rounded-lg outline-none w-full bg-white focus:border-2 disabled:bg-gray-200"
     />
     <div v-if="type === 'password'">

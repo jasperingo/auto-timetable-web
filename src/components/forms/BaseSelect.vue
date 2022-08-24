@@ -1,17 +1,22 @@
 <script setup lang="ts">
 const emit = defineEmits(["update:modelValue", "validityChange"]);
 
-defineProps<{
-  id: string;
-  label: string;
-  error?: string;
-  modelValue: string;
-  required?: boolean;
-  options: {
-    value: string | number;
-    text: string;
-  }[];
-}>();
+withDefaults(
+  defineProps<{
+    id: string;
+    label: string;
+    error?: string;
+    modelValue: string;
+    required?: boolean;
+    options: {
+      value: string | number;
+      text: string;
+    }[];
+  }>(),
+  {
+    required: true,
+  }
+);
 
 const onInput = (event: Event) => {
   const target = event.target as HTMLInputElement;

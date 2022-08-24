@@ -5,7 +5,15 @@ import { computed } from "vue";
 
 const emit = defineEmits(["retry"]);
 
-const props = defineProps<{ error: any }>();
+const props = withDefaults(
+  defineProps<{
+    error: any;
+    hasAction?: boolean;
+  }>(),
+  {
+    hasAction: true,
+  }
+);
 
 const code = computed(() => {
   if (props.error instanceof Error) {
@@ -31,6 +39,7 @@ const onRetry = () => emit("retry");
     <div class="font-bold text-red-700 mb-4 text-2xl">{{ code }}</div>
     <div class="font-bold mb-4">{{ message }}</div>
     <button
+      v-if="hasAction ?? true"
       @click="onRetry"
       class="mx-auto bg-white flex items-center gap-x-2 p-2 border rounded-lg hover:bg-green-200"
     >

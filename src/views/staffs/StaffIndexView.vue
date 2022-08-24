@@ -51,8 +51,21 @@ const toggleTopNav = () => (showTopNav.value = !showTopNav.value);
             :class="{ hidden: !showTopNav }"
             class="w-fit shadow-lg rounded-lg absolute top-full right-0 bg-white"
           >
-            <DashboardTopNavLink href="" text="Update password" />
-            <DashboardTopNavLink href="" text="Log out" />
+            <DashboardTopNavLink
+              href="/staff/profile"
+              text="Profile"
+              @link-clicked="toggleTopNav"
+            />
+            <DashboardTopNavLink
+              href=""
+              text="Update password"
+              @link-clicked="toggleTopNav"
+            />
+            <DashboardTopNavLink
+              href=""
+              text="Log out"
+              @link-clicked="toggleTopNav"
+            />
           </ul>
         </div>
       </div>
@@ -68,6 +81,7 @@ const toggleTopNav = () => (showTopNav.value = !showTopNav.value);
         v-for="navItem in navItems"
         :key="navItem.text"
         :item="navItem"
+        @link-clicked="toggleNav"
       />
     </ul>
   </nav>
