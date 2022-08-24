@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import SubHeader from "@/components/utils/SubHeader.vue";
 import BaseInput from "@/components/forms/BaseInput.vue";
-import { computed, ref, watch } from "vue";
 import BaseSelect from "@/components/forms/BaseSelect.vue";
 import BaseButton from "@/components/forms/BaseButton.vue";
 import DualInputBox from "@/components/forms/DualInputBox.vue";
@@ -10,9 +9,10 @@ import { useDepartmentsRead } from "@/composables/departments/departments-read-c
 import BigLoader from "@/components/loaders/BigLoader.vue";
 import ErrorLoader from "@/components/loaders/ErrorLoader.vue";
 import { useStaffCreate } from "@/composables/staffs/staff-create-composable";
+import type { WebserviceErrorResponse } from "@/models/web-service-error-response";
+import { computed, ref, watch } from "vue";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
-import type { WebserviceErrorResponse } from "@/models/web-service-error-response";
 
 const title = ref("");
 const firstName = ref("");
@@ -21,7 +21,6 @@ const staffNumber = ref("");
 const password = ref("");
 const role = ref("");
 const departmentId = ref("");
-
 const titleValidity = ref<ValidityState | null>(null);
 const firstNameValidity = ref<ValidityState | null>(null);
 const lastNameValidity = ref<ValidityState | null>(null);
@@ -168,18 +167,16 @@ const onSubmit = () => {
   <main>
     <div class="container">
       <SubHeader text="Create staff" />
+
       <BigLoader v-if="isLoadingDepartments" />
+
       <ErrorLoader
         v-else-if="isErrorDepartments"
         :error="errorDepartments"
         @retry="refetchDepartments"
       />
-      <form
-        v-else
-        @submit.prevent="onSubmit"
-        method="POST"
-        class="w-full py-8 px-4 border rounded-lg my-4"
-      >
+
+      <form v-else @submit.prevent="onSubmit" method="POST" class="base-form">
         <fieldset :disabled="isLoading">
           <DualInputBox>
             <template #left>

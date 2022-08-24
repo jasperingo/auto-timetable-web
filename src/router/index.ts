@@ -54,6 +54,11 @@ const router = createRouter({
           component: () => import("@/views/staffs/StaffProfileView.vue"),
         },
         {
+          path: "update-password",
+          name: "staff-update-password",
+          component: () => import("@/views/staffs/StaffUpdatePasswordView.vue"),
+        },
+        {
           path: "staffs/create",
           name: "staff-create-staff",
           component: () => import("@/views/staffs/StaffCreateStaffView.vue"),

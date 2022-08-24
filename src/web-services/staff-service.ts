@@ -1,4 +1,5 @@
 import type { Staff } from "@/models/staff-model";
+import type { UpdatePasswordType } from "@/models/update-password-type";
 import { BaseService } from "@/web-services/base-service";
 
 export type CreateStaffType = Pick<
@@ -9,6 +10,18 @@ export type CreateStaffType = Pick<
 export const StaffService = {
   create(form: CreateStaffType, accessToken: string) {
     return BaseService.postJson<Staff>("staffs", form, accessToken);
+  },
+
+  updatePassword(
+    id: number | string,
+    form: UpdatePasswordType,
+    accessToken: string
+  ) {
+    return BaseService.putJson<Staff>(
+      `staffs/${id}/password`,
+      form,
+      accessToken
+    );
   },
 
   read(id: number | string, accessToken: string) {

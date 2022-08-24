@@ -57,7 +57,7 @@ const toggleTopNav = () => (showTopNav.value = !showTopNav.value);
               @link-clicked="toggleTopNav"
             />
             <DashboardTopNavLink
-              href=""
+              href="/staff/update-password"
               text="Update password"
               @link-clicked="toggleTopNav"
             />

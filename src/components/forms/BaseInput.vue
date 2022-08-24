@@ -42,6 +42,7 @@ const onInput = (event: Event) => {
 <template>
   <div class="mb-4">
     <label :for="id" class="block">{{ label }}</label>
+
     <input
       :id="id"
       @input="onInput"
@@ -51,17 +52,19 @@ const onInput = (event: Event) => {
       :required="required"
       class="p-2 border border-green-700 rounded-lg outline-none w-full bg-white focus:border-2 disabled:bg-gray-200"
     />
+
     <div v-if="type === 'password'">
       <input
         type="checkbox"
         v-model="showPassword"
-        id="-show-password-input"
+        :id="`-show-password-for-${id}`"
         class="accent-green-700"
       />
-      <label for="-show-password-input" class="text-sm">
+      <label :for="`-show-password-for-${id}`" class="text-sm">
         {{ showPasswordInputLabel }}
       </label>
     </div>
+
     <div class="text-red-700 text-sm">{{ error }}</div>
   </div>
 </template>
