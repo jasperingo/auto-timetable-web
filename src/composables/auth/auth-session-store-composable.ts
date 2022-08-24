@@ -9,5 +9,10 @@ export function useAuthSessionStore() {
     accessToken: window.sessionStorage.getItem("accessToken"),
   });
 
-  return { save, get };
+  const clear = () => ({
+    userId: window.sessionStorage.removeItem("userId"),
+    accessToken: window.sessionStorage.removeItem("accessToken"),
+  });
+
+  return { save, get, clear };
 }

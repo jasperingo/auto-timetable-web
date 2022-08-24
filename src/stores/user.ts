@@ -8,6 +8,12 @@ export const useUserStore = defineStore("user", () => {
   const staff = ref<Staff | null>(null);
   const accessToken = ref<string | null>(null);
 
+  const clearStore = () => {
+    userId.value = 0;
+    staff.value = null;
+    accessToken.value = null;
+  };
+
   const setStaffAuth = (auth: StaffAuth) => {
     userId.value = auth.staffId;
     accessToken.value = auth.accessToken;
@@ -17,5 +23,5 @@ export const useUserStore = defineStore("user", () => {
     staff.value = s;
   };
 
-  return { userId, staff, accessToken, setStaffAuth, setStaff };
+  return { userId, staff, accessToken, setStaffAuth, setStaff, clearStore };
 });

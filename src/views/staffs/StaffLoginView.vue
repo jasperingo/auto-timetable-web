@@ -17,8 +17,32 @@ const toast = useToast();
 
 const router = useRouter();
 
-const { mutate, validate, error, isLoading, isError, isSuccess } =
-  useStaffAuth();
+const {
+  validate,
+  mutation: { mutate, error, isLoading, isError, isSuccess },
+  query: {
+    isLoading: isLoadingStaff,
+    isError: isErrorStaff,
+    isSuccess: isSuccessStaff,
+    error: errorStaff,
+    refetch: refetchStaff,
+  },
+} = useStaffAuth();
+
+watch([isSuccessStaff, isErrorStaff], () => {
+  if (isErrorStaff.value) {
+    if (errorStaff.value instanceof Error) {
+      toast.error(errorStaff.value.message);
+    } else {
+      toast.error((errorStaff.value as WebserviceGenericErrorResponse).error);
+    }
+  }
+
+  if (isSuccessStaff.value) {
+    toast.success("Login successful");
+    router.push({ name: "staff-dashboard" });
+  }
+});
 
 watch([isSuccess, isError], () => {
   if (isError.value) {
@@ -30,8 +54,7 @@ watch([isSuccess, isError], () => {
   }
 
   if (isSuccess.value) {
-    toast.success("Login successful");
-    router.push({ name: "staff-dashboard" });
+    refetchStaff.value();
   }
 });
 
@@ -55,7 +78,7 @@ const onSubmit = () => {
             @submit.prevent="onSubmit"
             class="w-full mx-2 py-8 px-4 border rounded-lg my-4 lg:w-96"
           >
-            <fieldset :disabled="isLoading">
+            <fieldset :disabled="isLoading || isLoadingStaff">
               <BaseInput
                 label="Staff number"
                 id="staff-number-input"
@@ -72,7 +95,7 @@ const onSubmit = () => {
                 @validity-change="(v) => (passwordValidity = v)"
               />
 
-              <BaseButton text="Login" :loading="isLoading" />
+              <BaseButton text="Login" :loading="isLoading || isLoadingStaff" />
             </fieldset>
           </form>
         </div>

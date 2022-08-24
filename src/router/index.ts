@@ -3,6 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import { useUserStore } from "@/stores/user";
 import { useAuthStaffSessionRead } from "@/composables/auth/auth-staff-session-read-composable";
+import { useAuthSessionStore } from "@/composables/auth/auth-session-store-composable";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +25,9 @@ const router = createRouter({
       beforeEnter() {
         const userStore = useUserStore();
 
-        if (userStore.userId > 0) {
+        const authSessionStore = useAuthSessionStore();
+
+        if (userStore.userId > 0 || Number(authSessionStore.get().userId) > 0) {
           return { name: "staff-dashboard" };
         }
       },
@@ -57,6 +60,11 @@ const router = createRouter({
           path: "update-password",
           name: "staff-update-password",
           component: () => import("@/views/staffs/StaffUpdatePasswordView.vue"),
+        },
+        {
+          path: "logout",
+          name: "staff-logout",
+          component: () => import("@/views/staffs/StaffLogoutView.vue"),
         },
         {
           path: "staffs/create",

@@ -6,9 +6,12 @@ import DashboardTopNavLink from "@/components/utils/DashboardTopNavLink.vue";
 import { ref } from "vue";
 import { useStaffDashboardNavItems } from "@/composables/utils/staff-dashboard-nav-items-composable";
 import DashboardNavLink from "@/components/utils/DashboardNavLink.vue";
+import { useUserStore } from "@/stores/user";
 
 const showNav = ref(false);
 const showTopNav = ref(false);
+
+const userStore = useUserStore();
 
 const navItems = useStaffDashboardNavItems();
 
@@ -44,7 +47,10 @@ const toggleTopNav = () => (showTopNav.value = !showTopNav.value);
             class="block float-right rounded-lg hover:bg-green-200 lg:flex lg:gap-x-2 lg:items-center lg:px-2"
           >
             <UserIcon :size="30" class="block text-green-700" />
-            <span class="font-bold hidden lg:block">Jasper Anelechukwu</span>
+            <span class="font-bold hidden lg:block">
+              {{ userStore.staff?.firstName }}
+              {{ userStore.staff?.lastName }}
+            </span>
           </button>
 
           <ul
@@ -62,7 +68,7 @@ const toggleTopNav = () => (showTopNav.value = !showTopNav.value);
               @link-clicked="toggleTopNav"
             />
             <DashboardTopNavLink
-              href=""
+              href="/staff/logout"
               text="Log out"
               @link-clicked="toggleTopNav"
             />

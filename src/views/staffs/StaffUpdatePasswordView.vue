@@ -82,7 +82,7 @@ const onSubmit = () => {
           <DualInputBox>
             <template #left>
               <BaseInput
-                label="New Password"
+                label="New password"
                 id="new-password-input"
                 type="password"
                 :minlength="6"

@@ -5,7 +5,7 @@ import { useQuery } from "vue-query";
 export function useStaffRead(id: number | string) {
   const userStore = useUserStore();
 
-  return useQuery(["departments", id], () =>
+  return useQuery(["staff", id], () =>
     StaffService.read(id, userStore.accessToken as string)
   );
 }
