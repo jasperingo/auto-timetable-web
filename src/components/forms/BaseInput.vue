@@ -12,6 +12,7 @@ const props = withDefaults(
     modelValue: string;
     required?: boolean;
     minlength?: number;
+    maxlength?: number;
   }>(),
   {
     required: true,
@@ -49,6 +50,7 @@ const onInput = (event: Event) => {
       :type="inputType"
       :value="modelValue"
       :minlength="minlength"
+      :maxlength="maxlength"
       :required="required"
       class="p-2 border border-green-700 rounded-lg outline-none w-full bg-white focus:border-2 disabled:bg-gray-200"
     />

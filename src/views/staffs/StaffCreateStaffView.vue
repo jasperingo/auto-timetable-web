@@ -107,7 +107,7 @@ watch([isSuccess, isError], () => {
 
   if (isSuccess.value) {
     toast.success("Staff created");
-    router.push({ name: "staff-view-staff" });
+    router.push({ name: "staff-read-staffs" });
   }
 });
 

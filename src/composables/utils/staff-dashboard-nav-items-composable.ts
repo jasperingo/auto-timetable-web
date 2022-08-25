@@ -40,11 +40,11 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     text: "Department",
     subLinks: [
       {
-        href: "",
+        href: "/staff/departments",
         text: "View departments",
       },
       {
-        href: "",
+        href: "/staff/departments/create",
         text: "Add department",
       },
     ],

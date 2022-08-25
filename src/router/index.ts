@@ -73,8 +73,20 @@ const router = createRouter({
         },
         {
           path: "staffs",
-          name: "staff-view-staff",
+          name: "staff-read-staffs",
           component: () => import("@/views/staffs/StaffReadStaffsView.vue"),
+        },
+        {
+          path: "departments/create",
+          name: "staff-create-department",
+          component: () =>
+            import("@/views/staffs/StaffCreateDepartmentView.vue"),
+        },
+        {
+          path: "departments",
+          name: "staff-read-departments",
+          component: () =>
+            import("@/views/staffs/StaffReadDepartmentsView.vue"),
         },
       ],
     },
