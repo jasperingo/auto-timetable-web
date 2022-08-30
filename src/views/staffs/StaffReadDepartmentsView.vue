@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import SubHeader from "@/components/utils/SubHeader.vue";
+import ErrorLoader from "@/components/loaders/ErrorLoader.vue";
+import BigLoader from "@/components/loaders/BigLoader.vue";
+import BaseTable from "@/components/tables/BaseTable.vue";
+import DepartmentTableRow from "@/components/tables/DepartmentTableRow.vue";
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
-import ErrorLoader from "../../components/loaders/ErrorLoader.vue";
-import BigLoader from "../../components/loaders/BigLoader.vue";
-import BaseTable from "../../components/tables/BaseTable.vue";
-import DepartmentTableRow from "../../components/tables/DepartmentTableRow.vue";
 
 const { isLoading, isError, data, error, refetch } = useDepartmentsRead();
 

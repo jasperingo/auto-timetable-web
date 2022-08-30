@@ -64,7 +64,16 @@ const NAV_IEMS: DashboardNavLinkType[] = [
   },
   {
     text: "Course",
-    subLinks: [],
+    subLinks: [
+      {
+        href: "/staff/courses",
+        text: "View courses",
+      },
+      {
+        href: "/staff/courses/create",
+        text: "Add course",
+      },
+    ],
   },
 ];
 
