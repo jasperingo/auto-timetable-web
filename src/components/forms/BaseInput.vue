@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 const emit = defineEmits(["update:modelValue", "validityChange"]);
 
@@ -13,6 +13,8 @@ const props = withDefaults(
     required?: boolean;
     minlength?: number;
     maxlength?: number;
+    min?: number;
+    max?: number;
   }>(),
   {
     required: true,
@@ -20,6 +22,10 @@ const props = withDefaults(
 );
 
 const showPassword = ref(false);
+
+const input = ref<HTMLInputElement | null>(null);
+
+onMounted(() => emit("validityChange", input.value?.validity));
 
 const inputType = computed(() => {
   if (props.type === "password") {
@@ -46,9 +52,12 @@ const onInput = (event: Event) => {
 
     <input
       :id="id"
+      ref="input"
       @input="onInput"
       :type="inputType"
       :value="modelValue"
+      :min="min"
+      :max="max"
       :minlength="minlength"
       :maxlength="maxlength"
       :required="required"

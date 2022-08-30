@@ -53,11 +53,11 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     text: "Hall",
     subLinks: [
       {
-        href: "",
+        href: "/staff/halls",
         text: "View halls",
       },
       {
-        href: "",
+        href: "/staff/halls/create",
         text: "Add hall",
       },
     ],

@@ -9,6 +9,7 @@ import { useDepartmentsRead } from "@/composables/departments/departments-read-c
 import BigLoader from "@/components/loaders/BigLoader.vue";
 import ErrorLoader from "@/components/loaders/ErrorLoader.vue";
 import { useStaffCreate } from "@/composables/staffs/staff-create-composable";
+import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
 import type { WebserviceErrorResponse } from "@/models/web-service-error-response";
 import { computed, ref, watch } from "vue";
 import { useToast } from "vue-toastification";
@@ -66,13 +67,7 @@ const staffRoles = computed(() =>
     }))
 );
 
-const departments = computed(
-  () =>
-    dataDepartments.value?.data.map((i) => ({
-      value: i.id,
-      text: `${i.name} (${i.code})`,
-    })) ?? []
-);
+const departments = useDepartmentsSelectInputOptions(dataDepartments);
 
 watch([isSuccess, isError], () => {
   if (isError.value) {

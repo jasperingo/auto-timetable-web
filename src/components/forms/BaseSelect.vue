@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
+
 const emit = defineEmits(["update:modelValue", "validityChange"]);
 
 withDefaults(
@@ -18,8 +20,12 @@ withDefaults(
   }
 );
 
+const input = ref<HTMLSelectElement | null>(null);
+
+onMounted(() => emit("validityChange", input.value?.validity));
+
 const onInput = (event: Event) => {
-  const target = event.target as HTMLInputElement;
+  const target = event.target as HTMLSelectElement;
   emit("update:modelValue", target.value);
   emit("validityChange", target.validity);
 };
@@ -30,6 +36,7 @@ const onInput = (event: Event) => {
     <label :for="id" class="block">{{ label }}</label>
     <select
       :id="id"
+      ref="input"
       @change="onInput"
       :value="modelValue"
       :required="required ?? true"

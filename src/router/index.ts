@@ -88,6 +88,16 @@ const router = createRouter({
           component: () =>
             import("@/views/staffs/StaffReadDepartmentsView.vue"),
         },
+        {
+          path: "halls/create",
+          name: "staff-create-hall",
+          component: () => import("@/views/staffs/StaffCreateHallView.vue"),
+        },
+        {
+          path: "halls",
+          name: "staff-read-halls",
+          component: () => import("@/views/staffs/StaffReadHallsView.vue"),
+        },
       ],
     },
   ],
