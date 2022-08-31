@@ -77,6 +77,16 @@ const router = createRouter({
           component: () => import("@/views/staffs/StaffReadStaffsView.vue"),
         },
         {
+          path: "students/create",
+          name: "staff-create-student",
+          component: () => import("@/views/staffs/StaffCreateStudentView.vue"),
+        },
+        {
+          path: "students",
+          name: "staff-read-students",
+          component: () => import("@/views/staffs/StaffReadStudentsView.vue"),
+        },
+        {
           path: "departments/create",
           name: "staff-create-department",
           component: () =>

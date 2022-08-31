@@ -27,11 +27,11 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     text: "Student",
     subLinks: [
       {
-        href: "",
+        href: "/staff/students",
         text: "View students",
       },
       {
-        href: "",
+        href: "/staff/students/create",
         text: "Add student",
       },
     ],
