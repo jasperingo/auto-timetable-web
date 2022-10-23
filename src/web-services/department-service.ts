@@ -6,7 +6,7 @@ export const DepartmentService = {
     return BaseService.postJson<Department>("departments", form, accessToken);
   },
 
-  read() {
+  readMany() {
     return BaseService.query<Department[]>("departments");
   },
 };

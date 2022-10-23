@@ -27,4 +27,8 @@ export const StaffService = {
   read(id: number | string, accessToken: string) {
     return BaseService.query<Staff>(`staffs/${id}`, accessToken);
   },
+
+  readMany(accessToken: string) {
+    return BaseService.query<Staff[]>("staffs", accessToken);
+  },
 };
