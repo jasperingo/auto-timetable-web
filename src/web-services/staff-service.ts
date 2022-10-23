@@ -28,7 +28,16 @@ export const StaffService = {
     return BaseService.query<Staff>(`staffs/${id}`, accessToken);
   },
 
-  readMany(accessToken: string) {
-    return BaseService.query<Staff[]>("staffs", accessToken);
+  readMany(accessToken: string, departmentId?: string) {
+    const urlParams = new URLSearchParams();
+
+    if (departmentId) {
+      urlParams.set("departmentId", departmentId);
+    }
+
+    return BaseService.query<Staff[]>(
+      `staffs?${urlParams.toString()}`,
+      accessToken
+    );
   },
 };

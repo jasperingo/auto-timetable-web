@@ -6,7 +6,7 @@ import DualInputBox from "@/components/forms/DualInputBox.vue";
 import BaseInput from "@/components/forms/BaseInput.vue";
 import BaseButton from "@/components/forms/BaseButton.vue";
 import BaseSelect from "@/components/forms/BaseSelect.vue";
-import { useStudentCreate } from "@/composables/students/staff-create-composable";
+import { useStudentCreate } from "@/composables/students/student-create-composable";
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
 import type { WebserviceErrorResponse } from "@/models/web-service-error-response";

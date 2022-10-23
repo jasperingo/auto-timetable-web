@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import BaseSelect from "@/components/forms/BaseSelect.vue";
 import BigLoader from "@/components/loaders/BigLoader.vue";
 import ErrorLoader from "@/components/loaders/ErrorLoader.vue";
 import BaseTable from "@/components/tables/BaseTable.vue";
 import StaffTableRow from "@/components/tables/StaffTableRow.vue";
+import ListFilter from "@/components/utils/ListFilter.vue";
 import SubHeader from "@/components/utils/SubHeader.vue";
+import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
 import { useStaffsRead } from "@/composables/staffs/staffs-read-composable";
-
-const { isLoading, isError, data, error, refetch } = useStaffsRead();
+import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
+import { computed, ref } from "vue";
 
 const HEAD_ITEMS = [
   "S/N",
@@ -17,6 +20,33 @@ const HEAD_ITEMS = [
   "Role",
   "Department",
 ];
+
+const departmentId = ref("");
+
+const departmentsFetch = useDepartmentsRead();
+
+const departments = useDepartmentsSelectInputOptions(departmentsFetch.data);
+
+const { isLoading, isError, data, error, refetch } =
+  useStaffsRead(departmentId);
+
+const refetchAll = () => {
+  if (departmentsFetch.isError) {
+    departmentsFetch.refetch.value();
+  }
+
+  if (isError) {
+    refetch.value();
+  }
+};
+
+const isLoadingAll = computed(
+  () => departmentsFetch.isLoading.value || isLoading.value
+);
+
+const isErrorAll = computed(
+  () => departmentsFetch.isError.value || isError.value
+);
 </script>
 
 <template>
@@ -24,18 +54,32 @@ const HEAD_ITEMS = [
     <div class="container">
       <SubHeader text="Staffs" />
 
-      <BigLoader v-if="isLoading" />
+      <BigLoader v-if="isLoadingAll" />
 
-      <ErrorLoader v-else-if="isError" :error="error" @retry="refetch" />
+      <ErrorLoader
+        @retry="refetchAll"
+        :error="departmentsFetch.error ?? error"
+        v-else-if="isErrorAll"
+      />
 
-      <BaseTable
-        v-else
-        :head-items="HEAD_ITEMS"
-        :items="data?.data ?? []"
-        v-slot="{ item }"
-      >
-        <StaffTableRow :item="item" />
-      </BaseTable>
+      <div v-else>
+        <ListFilter>
+          <BaseSelect
+            label="Department"
+            id="department-input"
+            :options="departments"
+            v-model="departmentId"
+          />
+        </ListFilter>
+
+        <BaseTable
+          :head-items="HEAD_ITEMS"
+          :items="data?.data ?? []"
+          v-slot="{ item }"
+        >
+          <StaffTableRow :item="item" />
+        </BaseTable>
+      </div>
     </div>
   </main>
 </template>

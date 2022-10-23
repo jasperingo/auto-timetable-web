@@ -30,6 +30,15 @@ withDefaults(
           <tr v-for="item of items" :key="item[keyName]">
             <slot :item="item"></slot>
           </tr>
+
+          <tr v-if="items.length === 0">
+            <td
+              class="border p-8 text-center font-bold"
+              :colspan="headItems.length"
+            >
+              No item
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

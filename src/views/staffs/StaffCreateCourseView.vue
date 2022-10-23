@@ -11,10 +11,9 @@ import { useDepartmentsRead } from "@/composables/departments/departments-read-c
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
 import { Semester } from "@/models/semester-enum";
 import type { WebserviceErrorResponse } from "@/models/web-service-error-response";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
-import { computed } from "@vue/reactivity";
 
 const title = ref("");
 const code = ref("");
