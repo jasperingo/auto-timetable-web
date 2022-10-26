@@ -49,7 +49,12 @@ const router = createRouter({
           alias: "",
           path: "dashboard",
           name: "staff-dashboard",
-          component: () => import("@/views/staffs/StaffDashboardView.vue"),
+          component: () => import("@/views/staffs/StaffReadTimetablesView.vue"),
+        },
+        {
+          path: "analysis",
+          name: "staff-analysis",
+          component: () => import("@/views/staffs/StaffAnalysisView.vue"),
         },
         {
           path: "profile",
@@ -65,6 +70,12 @@ const router = createRouter({
           path: "logout",
           name: "staff-logout",
           component: () => import("@/views/staffs/StaffLogoutView.vue"),
+        },
+        {
+          path: "timetable/create",
+          name: "staff-create-timetable",
+          component: () =>
+            import("@/views/staffs/StaffCreateTimetableView.vue"),
         },
         {
           path: "staffs/create",

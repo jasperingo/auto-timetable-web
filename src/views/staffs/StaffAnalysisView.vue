@@ -11,7 +11,7 @@ const { isLoading, isError, data, error, refetch } = useAnalysisRead();
 <template>
   <main>
     <div class="container">
-      <SubHeader text="Dashboard" />
+      <SubHeader text="Analysis" />
 
       <BigLoader v-if="isLoading" />
 

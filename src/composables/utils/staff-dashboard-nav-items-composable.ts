@@ -6,7 +6,15 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     subLinks: [
       {
         href: "/staff/dashboard",
-        text: "Admin dashboard",
+        text: "View timetables",
+      },
+      {
+        href: "/staff/timetable/create",
+        text: "Generate timetable",
+      },
+      {
+        href: "/staff/analysis",
+        text: "View analyis",
       },
     ],
   },
