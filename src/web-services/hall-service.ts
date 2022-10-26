@@ -9,4 +9,17 @@ export const HallService = {
   create(form: CreateHallType, accessToken: string) {
     return BaseService.postJson<Hall>("halls", form, accessToken);
   },
+
+  readMany(accessToken: string, departmentId?: string) {
+    const urlParams = new URLSearchParams();
+
+    if (departmentId) {
+      urlParams.set("departmentId", departmentId);
+    }
+
+    return BaseService.query<Hall[]>(
+      `halls?${urlParams.toString()}`,
+      accessToken
+    );
+  },
 };

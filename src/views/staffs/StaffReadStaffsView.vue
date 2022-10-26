@@ -47,6 +47,8 @@ const isLoadingAll = computed(
 const isErrorAll = computed(
   () => departmentsFetch.isError.value || isError.value
 );
+
+const errorAll = computed(() => departmentsFetch.error.value ?? error.value);
 </script>
 
 <template>
@@ -58,7 +60,7 @@ const isErrorAll = computed(
 
       <ErrorLoader
         @retry="refetchAll"
-        :error="departmentsFetch.error ?? error"
+        :error="errorAll"
         v-else-if="isErrorAll"
       />
 
