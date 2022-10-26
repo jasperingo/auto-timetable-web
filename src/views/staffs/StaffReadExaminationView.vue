@@ -20,6 +20,7 @@ const INVIGILATOR_HEAD_ITEMS = [
   "Staff title",
   "Staff first name",
   "Staff last name",
+  "Staff department name",
 ];
 
 const route = useRoute();

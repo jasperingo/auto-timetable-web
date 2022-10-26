@@ -10,4 +10,5 @@ defineProps<{ item: ExaminationInvigilator }>();
   <BaseTableDataItem :text="item.staff.title ?? ''" />
   <BaseTableDataItem :text="item.staff.firstName" />
   <BaseTableDataItem :text="item.staff.lastName" />
+  <BaseTableDataItem :text="item.staff.department?.name ?? ''" />
 </template>

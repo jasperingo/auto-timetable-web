@@ -10,5 +10,5 @@ export interface Staff {
   password: string;
   role: StaffRole;
   createdAt: string;
-  department: Department;
+  department?: Department;
 }

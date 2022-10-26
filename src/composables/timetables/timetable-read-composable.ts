@@ -7,6 +7,6 @@ export function useTimetableRead(id: number | string, filter: Ref<string>) {
   const userStore = useUserStore();
 
   return useQuery(["timetable", id, filter], () =>
-    TimetableService.read(id, userStore.accessToken as string)
+    TimetableService.read(id, userStore.accessToken as string, filter.value)
   );
 }
