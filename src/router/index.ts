@@ -83,6 +83,12 @@ const router = createRouter({
           component: () => import("@/views/staffs/StaffReadTimetableView.vue"),
         },
         {
+          path: "examination/:id",
+          name: "staff-read-examination",
+          component: () =>
+            import("@/views/staffs/StaffReadExaminationView.vue"),
+        },
+        {
           path: "staffs/create",
           name: "staff-create-staff",
           component: () => import("@/views/staffs/StaffCreateStaffView.vue"),

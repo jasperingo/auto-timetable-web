@@ -1,6 +1,7 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
+    caption?: string;
     headItems: string[];
     items: any[];
     keyName?: string;
@@ -12,9 +13,14 @@ withDefaults(
 </script>
 
 <template>
-  <div class="border py-8 px-4 rounded-lg">
+  <div class="border py-8 px-4 rounded-lg mb-4">
     <div class="overflow-x-auto">
       <table class="w-full">
+        <caption class="font-bold mb-2">
+          {{
+            caption
+          }}
+        </caption>
         <thead>
           <tr>
             <th
