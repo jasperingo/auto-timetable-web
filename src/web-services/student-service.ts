@@ -11,6 +11,10 @@ export const StudentService = {
     return BaseService.postJson<Student>("students", form, accessToken);
   },
 
+  read(id: number | string, accessToken: string) {
+    return BaseService.query<Student>(`students/${id}`, accessToken);
+  },
+
   readMany(accessToken: string, departmentId?: string, session?: string) {
     const urlParams = new URLSearchParams();
 

@@ -4,6 +4,9 @@ import NotFoundView from "@/views/NotFoundView.vue";
 import { useUserStore } from "@/stores/user";
 import { useAuthStaffSessionRead } from "@/composables/auth/auth-staff-session-read-composable";
 import { useAuthSessionStore } from "@/composables/auth/auth-session-store-composable";
+import { staffRouter } from "@/router/staff-router";
+import { studentRouter } from "@/router/student-router";
+import { useAuthStudentSessionRead } from "@/composables/auth/auth-student-session-read-composable";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,103 +47,35 @@ const router = createRouter({
           return { name: "staff-login" };
         }
       },
-      children: [
-        {
-          alias: "",
-          path: "dashboard",
-          name: "staff-dashboard",
-          component: () => import("@/views/staffs/StaffReadTimetablesView.vue"),
-        },
-        {
-          path: "analysis",
-          name: "staff-analysis",
-          component: () => import("@/views/staffs/StaffAnalysisView.vue"),
-        },
-        {
-          path: "profile",
-          name: "staff-profile",
-          component: () => import("@/views/staffs/StaffProfileView.vue"),
-        },
-        {
-          path: "update-password",
-          name: "staff-update-password",
-          component: () => import("@/views/staffs/StaffUpdatePasswordView.vue"),
-        },
-        {
-          path: "logout",
-          name: "staff-logout",
-          component: () => import("@/views/staffs/StaffLogoutView.vue"),
-        },
-        {
-          path: "timetable/create",
-          name: "staff-create-timetable",
-          component: () =>
-            import("@/views/staffs/StaffCreateTimetableView.vue"),
-        },
-        {
-          path: "timetable/:id",
-          name: "staff-read-timetable",
-          component: () => import("@/views/staffs/StaffReadTimetableView.vue"),
-        },
-        {
-          path: "examination/:id",
-          name: "staff-read-examination",
-          component: () =>
-            import("@/views/staffs/StaffReadExaminationView.vue"),
-        },
-        {
-          path: "staffs/create",
-          name: "staff-create-staff",
-          component: () => import("@/views/staffs/StaffCreateStaffView.vue"),
-        },
-        {
-          path: "staffs",
-          name: "staff-read-staffs",
-          component: () => import("@/views/staffs/StaffReadStaffsView.vue"),
-        },
-        {
-          path: "students/create",
-          name: "staff-create-student",
-          component: () => import("@/views/staffs/StaffCreateStudentView.vue"),
-        },
-        {
-          path: "students",
-          name: "staff-read-students",
-          component: () => import("@/views/staffs/StaffReadStudentsView.vue"),
-        },
-        {
-          path: "departments/create",
-          name: "staff-create-department",
-          component: () =>
-            import("@/views/staffs/StaffCreateDepartmentView.vue"),
-        },
-        {
-          path: "departments",
-          name: "staff-read-departments",
-          component: () =>
-            import("@/views/staffs/StaffReadDepartmentsView.vue"),
-        },
-        {
-          path: "halls/create",
-          name: "staff-create-hall",
-          component: () => import("@/views/staffs/StaffCreateHallView.vue"),
-        },
-        {
-          path: "halls",
-          name: "staff-read-halls",
-          component: () => import("@/views/staffs/StaffReadHallsView.vue"),
-        },
-        {
-          path: "courses/create",
-          name: "staff-create-course",
-          component: () => import("@/views/staffs/StaffCreateCourseView.vue"),
-        },
-        {
-          path: "courses",
-          name: "staff-read-courses",
-          component: () => import("@/views/staffs/StaffReadCoursesView.vue"),
-        },
-      ],
+      children: staffRouter,
+    },
+    {
+      path: "/student/login",
+      name: "student-login",
+      component: () => import("@/views/students/StudentLoginView.vue"),
+      beforeEnter() {
+        const userStore = useUserStore();
+
+        const authSessionStore = useAuthSessionStore();
+
+        if (userStore.userId > 0 || Number(authSessionStore.get().userId) > 0) {
+          return { name: "student-read-timetables" };
+        }
+      },
+    },
+    {
+      path: "/student",
+      name: "student",
+      component: () => import("@/views/students/StudentIndexView.vue"),
+      async beforeEnter() {
+        const authStudent = useAuthStudentSessionRead();
+        try {
+          await authStudent();
+        } catch {
+          return { name: "student-login" };
+        }
+      },
+      children: studentRouter,
     },
   ],
 });

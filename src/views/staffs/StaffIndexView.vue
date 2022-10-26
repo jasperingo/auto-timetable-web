@@ -1,98 +1,118 @@
 <script setup lang="ts">
-import { RouterView, RouterLink } from "vue-router";
-import MenuIcon from "vue-material-design-icons/Menu.vue";
-import UserIcon from "vue-material-design-icons/AccountCircle.vue";
-import DashboardTopNavLink from "@/components/utils/DashboardTopNavLink.vue";
-import { ref } from "vue";
-import { useStaffDashboardNavItems } from "@/composables/utils/staff-dashboard-nav-items-composable";
-import DashboardNavLink from "@/components/utils/DashboardNavLink.vue";
+import DashboardLayout from "@/components/utils/DashboardLayout.vue";
+import type {
+  DashboardNavLinkType,
+  DashboardNavSubLinkType,
+} from "@/models/dashboard-nav-link-type";
 import { useUserStore } from "@/stores/user";
 
-const showNav = ref(false);
-const showTopNav = ref(false);
+const NAV_IEMS: DashboardNavLinkType[] = [
+  {
+    text: "Dashboard",
+    subLinks: [
+      {
+        href: "/staff/dashboard",
+        text: "View timetables",
+      },
+      {
+        href: "/staff/timetable/create",
+        text: "Generate timetable",
+      },
+      {
+        href: "/staff/analysis",
+        text: "View analyis",
+      },
+    ],
+  },
+  {
+    text: "Staff",
+    subLinks: [
+      {
+        href: "/staff/staffs",
+        text: "View staffs",
+      },
+      {
+        href: "/staff/staffs/create",
+        text: "Add staff",
+      },
+    ],
+  },
+  {
+    text: "Student",
+    subLinks: [
+      {
+        href: "/staff/students",
+        text: "View students",
+      },
+      {
+        href: "/staff/students/create",
+        text: "Add student",
+      },
+    ],
+  },
+  {
+    text: "Department",
+    subLinks: [
+      {
+        href: "/staff/departments",
+        text: "View departments",
+      },
+      {
+        href: "/staff/departments/create",
+        text: "Add department",
+      },
+    ],
+  },
+  {
+    text: "Hall",
+    subLinks: [
+      {
+        href: "/staff/halls",
+        text: "View halls",
+      },
+      {
+        href: "/staff/halls/create",
+        text: "Add hall",
+      },
+    ],
+  },
+  {
+    text: "Course",
+    subLinks: [
+      {
+        href: "/staff/courses",
+        text: "View courses",
+      },
+      {
+        href: "/staff/courses/create",
+        text: "Add course",
+      },
+    ],
+  },
+];
+
+const TOP_NAV_ITEMS: DashboardNavSubLinkType[] = [
+  {
+    href: "/staff/profile",
+    text: "Profile",
+  },
+  {
+    href: "/staff/update-password",
+    text: "Update password",
+  },
+  {
+    href: "/staff/logout",
+    text: "Log out",
+  },
+];
 
 const userStore = useUserStore();
-
-const navItems = useStaffDashboardNavItems();
-
-const toggleNav = () => (showNav.value = !showNav.value);
-const toggleTopNav = () => (showTopNav.value = !showTopNav.value);
 </script>
 
 <template>
-  <header class="py-4 border-b">
-    <div class="container">
-      <div class="flex gap-x-4 items-center">
-        <button
-          @click="toggleNav"
-          class="bg-green-700 p-0.5 rounded-lg hover:bg-green-500 lg:hidden"
-        >
-          <MenuIcon class="block text-green-200" />
-        </button>
-
-        <img
-          width="25"
-          height="25"
-          alt="FUTO logo"
-          src="@/assets/images/futo-logo.png"
-        />
-
-        <h1 class="text-green-700 font-bold text-xl sr-only md:not-sr-only">
-          <RouterLink to="/">Auto Timetable</RouterLink>
-        </h1>
-
-        <div class="flex-grow relative text-right">
-          <button
-            @click="toggleTopNav"
-            class="block float-right rounded-lg hover:bg-green-200 lg:flex lg:gap-x-2 lg:items-center lg:px-2"
-          >
-            <UserIcon :size="30" class="block text-green-700" />
-            <span class="font-bold hidden lg:block">
-              {{ userStore.staff?.firstName }}
-              {{ userStore.staff?.lastName }}
-            </span>
-          </button>
-
-          <ul
-            :class="{ hidden: !showTopNav }"
-            class="w-fit shadow-lg rounded-lg absolute top-full right-0 bg-white"
-          >
-            <DashboardTopNavLink
-              href="/staff/profile"
-              text="Profile"
-              @link-clicked="toggleTopNav"
-            />
-            <DashboardTopNavLink
-              href="/staff/update-password"
-              text="Update password"
-              @link-clicked="toggleTopNav"
-            />
-            <DashboardTopNavLink
-              href="/staff/logout"
-              text="Log out"
-              @link-clicked="toggleTopNav"
-            />
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <nav
-    :class="{ hidden: !showNav }"
-    class="fixed w-3/4 h-full pb-16 overflow-auto bg-white border-r-2 lg:block lg:w-72"
-  >
-    <ul class="py-4">
-      <DashboardNavLink
-        v-for="navItem in navItems"
-        :key="navItem.text"
-        :item="navItem"
-        @link-clicked="toggleNav"
-      />
-    </ul>
-  </nav>
-
-  <div class="lg:ml-72">
-    <RouterView />
-  </div>
+  <DashboardLayout
+    :user-name="`${userStore.staff?.firstName} ${userStore.staff?.lastName}`"
+    :nav-items="NAV_IEMS"
+    :top-nav-items="TOP_NAV_ITEMS"
+  />
 </template>

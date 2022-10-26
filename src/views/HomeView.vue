@@ -14,7 +14,7 @@ import HomeHeader from "../components/utils/HomeHeader.vue";
             Technology Owerri.
           </p>
           <ul class="flex gap-x-4">
-            <HomeLoginLink text="Student login" href="" />
+            <HomeLoginLink text="Student login" href="/student/login" />
             <HomeLoginLink text="Staff login" href="/staff/login" />
           </ul>
         </div>

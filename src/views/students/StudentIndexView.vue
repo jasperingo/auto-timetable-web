@@ -1,20 +1,18 @@
-import type { DashboardNavLinkType } from "@/models/dashboard-nav-link-type";
+<script setup lang="ts">
+import DashboardLayout from "@/components/utils/DashboardLayout.vue";
+import type {
+  DashboardNavLinkType,
+  DashboardNavSubLinkType,
+} from "@/models/dashboard-nav-link-type";
+import { useUserStore } from "@/stores/user";
 
 const NAV_IEMS: DashboardNavLinkType[] = [
   {
-    text: "Dashboard",
+    text: "Timetable",
     subLinks: [
       {
-        href: "/staff/dashboard",
+        href: "/student/timetables",
         text: "View timetables",
-      },
-      {
-        href: "/staff/timetable/create",
-        text: "Generate timetable",
-      },
-      {
-        href: "/staff/analysis",
-        text: "View analyis",
       },
     ],
   },
@@ -85,6 +83,28 @@ const NAV_IEMS: DashboardNavLinkType[] = [
   },
 ];
 
-export function useStaffDashboardNavItems() {
-  return NAV_IEMS;
-}
+const TOP_NAV_ITEMS: DashboardNavSubLinkType[] = [
+  {
+    href: "/student/profile",
+    text: "Profile",
+  },
+  {
+    href: "/student/update-password",
+    text: "Update password",
+  },
+  {
+    href: "/student/logout",
+    text: "Log out",
+  },
+];
+
+const userStore = useUserStore();
+</script>
+
+<template>
+  <DashboardLayout
+    :user-name="`${userStore.student?.firstName} ${userStore.student?.lastName}`"
+    :nav-items="NAV_IEMS"
+    :top-nav-items="TOP_NAV_ITEMS"
+  />
+</template>

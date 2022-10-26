@@ -14,5 +14,20 @@ export function useAuthSessionStore() {
     accessToken: window.sessionStorage.removeItem("accessToken"),
   });
 
-  return { save, get, clear };
+  const saveStudent = (userId: number, accessToken: string) => {
+    window.sessionStorage.setItem("studentUserId", String(userId));
+    window.sessionStorage.setItem("studentAccessToken", accessToken);
+  };
+
+  const getStudent = () => ({
+    userId: window.sessionStorage.getItem("studentUserId"),
+    accessToken: window.sessionStorage.getItem("studentAccessToken"),
+  });
+
+  const clearStudent = () => ({
+    userId: window.sessionStorage.removeItem("studentUserId"),
+    accessToken: window.sessionStorage.removeItem("studentAccessToken"),
+  });
+
+  return { save, get, clear, saveStudent, getStudent, clearStudent };
 }
