@@ -9,11 +9,11 @@ import ErrorLoader from "@/components/loaders/ErrorLoader.vue";
 import { useCourseCreate } from "@/composables/courses/course-create-composable";
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
-import { Semester } from "@/models/semester-enum";
 import type { WebserviceErrorResponse } from "@/models/web-service-error-response";
-import { ref, watch, computed } from "vue";
+import { ref, watch } from "vue";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
+import { useCoursesSelectInputOptions } from "@/composables/utils/courses-select-input-options-composable";
 
 const title = ref("");
 const code = ref("");
@@ -54,12 +54,7 @@ const {
 
 const departments = useDepartmentsSelectInputOptions(departmentsData);
 
-const semesters = computed(() =>
-  Object.values(Semester).map((k) => ({
-    value: k,
-    text: k,
-  }))
-);
+const semesters = useCoursesSelectInputOptions();
 
 watch([isSuccess, isError], () => {
   if (isError.value) {
