@@ -12,9 +12,9 @@ const userStore = useUserStore();
 const authSession = useAuthSessionStore();
 
 const yes = () => {
-  authSession.clear();
+  authSession.clearStudent();
   userStore.clearStore();
-  router.push({ name: "staff-login" });
+  router.push({ name: "student-login" });
 };
 
 const no = () => {
