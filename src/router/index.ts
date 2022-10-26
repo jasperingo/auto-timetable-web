@@ -78,6 +78,11 @@ const router = createRouter({
             import("@/views/staffs/StaffCreateTimetableView.vue"),
         },
         {
+          path: "timetable/:id",
+          name: "staff-read-timetable",
+          component: () => import("@/views/staffs/StaffReadTimetableView.vue"),
+        },
+        {
           path: "staffs/create",
           name: "staff-create-staff",
           component: () => import("@/views/staffs/StaffCreateStaffView.vue"),

@@ -13,7 +13,7 @@ import type { WebserviceErrorResponse } from "@/models/web-service-error-respons
 import { ref, watch } from "vue";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
-import { useCoursesSelectInputOptions } from "@/composables/utils/courses-select-input-options-composable";
+import { useCoursesSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
 
 const title = ref("");
 const code = ref("");

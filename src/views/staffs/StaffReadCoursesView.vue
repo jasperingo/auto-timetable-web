@@ -8,7 +8,7 @@ import ListFilter from "@/components/utils/ListFilter.vue";
 import SubHeader from "@/components/utils/SubHeader.vue";
 import { useCoursesRead } from "@/composables/courses/courses-read-composable";
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
-import { useCoursesSelectInputOptions } from "@/composables/utils/courses-select-input-options-composable";
+import { useCoursesSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
 import { ref, computed } from "vue";
 
