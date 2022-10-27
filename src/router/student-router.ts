@@ -5,7 +5,7 @@ export const studentRouter: RouteRecordRaw[] = [
     alias: "",
     path: "timetables",
     name: "student-read-timetables",
-    component: () => import("@/views/students/StudentReadTimetablesView.vue"),
+    component: () => import("@/views/ReadTimetablesView.vue"),
   },
   {
     path: "logout",
@@ -21,5 +21,10 @@ export const studentRouter: RouteRecordRaw[] = [
     path: "update-password",
     name: "student-update-password",
     component: () => import("@/views/students/StudentUpdatePasswordView.vue"),
+  },
+  {
+    path: "timetable/:id",
+    name: "student-read-timetable",
+    component: () => import("@/views/ReadTimetableView.vue"),
   },
 ];

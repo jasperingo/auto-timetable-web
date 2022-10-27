@@ -5,7 +5,7 @@ export const staffRouter: RouteRecordRaw[] = [
     alias: "",
     path: "dashboard",
     name: "staff-dashboard",
-    component: () => import("@/views/staffs/StaffReadTimetablesView.vue"),
+    component: () => import("@/views/ReadTimetablesView.vue"),
   },
   {
     path: "analysis",
@@ -35,7 +35,7 @@ export const staffRouter: RouteRecordRaw[] = [
   {
     path: "timetable/:id",
     name: "staff-read-timetable",
-    component: () => import("@/views/staffs/StaffReadTimetableView.vue"),
+    component: () => import("@/views/ReadTimetableView.vue"),
   },
   {
     path: "examination/:id",
