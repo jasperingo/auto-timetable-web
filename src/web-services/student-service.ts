@@ -1,4 +1,5 @@
 import type { Student } from "@/models/student-model";
+import type { UpdatePasswordType } from "@/models/update-password-type";
 import { BaseService } from "@/web-services/base-service";
 
 export type CreateStudentType = Pick<
@@ -9,6 +10,18 @@ export type CreateStudentType = Pick<
 export const StudentService = {
   create(form: CreateStudentType, accessToken: string) {
     return BaseService.postJson<Student>("students", form, accessToken);
+  },
+
+  updatePassword(
+    id: number | string,
+    form: UpdatePasswordType,
+    accessToken: string
+  ) {
+    return BaseService.putJson<Student>(
+      `students/${id}/password`,
+      form,
+      accessToken
+    );
   },
 
   read(id: number | string, accessToken: string) {

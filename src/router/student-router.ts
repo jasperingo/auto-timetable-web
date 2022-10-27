@@ -17,4 +17,9 @@ export const studentRouter: RouteRecordRaw[] = [
     name: "student-profile",
     component: () => import("@/views/students/StudentProfileView.vue"),
   },
+  {
+    path: "update-password",
+    name: "student-update-password",
+    component: () => import("@/views/students/StudentUpdatePasswordView.vue"),
+  },
 ];
