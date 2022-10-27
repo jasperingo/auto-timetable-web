@@ -12,4 +12,9 @@ export const studentRouter: RouteRecordRaw[] = [
     name: "student-logout",
     component: () => import("@/views/students/StudentLogoutView.vue"),
   },
+  {
+    path: "profile",
+    name: "student-profile",
+    component: () => import("@/views/students/StudentProfileView.vue"),
+  },
 ];
