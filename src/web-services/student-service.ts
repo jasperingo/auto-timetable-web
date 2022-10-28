@@ -1,4 +1,3 @@
-import type { Course } from "@/models/course-model";
 import type { CourseRegistration } from "@/models/course-registration-model";
 import type { Student } from "@/models/student-model";
 import type { UpdatePasswordType } from "@/models/update-password-type";
@@ -43,33 +42,6 @@ export const StudentService = {
 
     return BaseService.query<Student[]>(
       `students?${urlParams.toString()}`,
-      accessToken
-    );
-  },
-
-  readManyCourses(
-    id: string | number,
-    accessToken: string,
-    departmentId: string,
-    semester: string,
-    level: string
-  ) {
-    const urlParams = new URLSearchParams();
-
-    if (departmentId) {
-      urlParams.set("departmentId", departmentId);
-    }
-
-    if (semester) {
-      urlParams.set("semester", semester);
-    }
-
-    if (level) {
-      urlParams.set("level", level);
-    }
-
-    return BaseService.query<Course[]>(
-      `students/${id}/courses?${urlParams.toString()}`,
       accessToken
     );
   },

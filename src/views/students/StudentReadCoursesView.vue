@@ -6,7 +6,7 @@ import BaseTable from "@/components/tables/BaseTable.vue";
 import CourseToRegisterTableRow from "@/components/tables/CourseToRegisterTableRow.vue";
 import ListFilter from "@/components/utils/ListFilter.vue";
 import SubHeader from "@/components/utils/SubHeader.vue";
-import { useCoursesToRegisterRead } from "@/composables/courses/courses-to-register-read-composable";
+import { useCoursesRead } from "@/composables/courses/courses-read-composable";
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
 import { useCoursesSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
@@ -48,7 +48,7 @@ const semesters = useCoursesSelectInputOptions();
 
 const departments = useDepartmentsSelectInputOptions(departmentsFetch.data);
 
-const { isLoading, isError, data, error, refetch } = useCoursesToRegisterRead(
+const { isLoading, isError, data, error, refetch } = useCoursesRead(
   departmentId,
   semester,
   level
@@ -154,7 +154,7 @@ const isCourseLoading = (id: number, regId: number) =>
 <template>
   <main>
     <div class="container">
-      <SubHeader text="Courses to register" />
+      <SubHeader text="Courses" />
 
       <BigLoader v-if="isLoadingAll" />
 

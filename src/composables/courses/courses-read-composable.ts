@@ -5,15 +5,17 @@ import { useQuery } from "vue-query";
 
 export function useCoursesRead(
   departmentId: Ref<string>,
-  semester: Ref<string>
+  semester: Ref<string>,
+  level?: Ref<string>
 ) {
   const userStore = useUserStore();
 
-  return useQuery(["courses", departmentId, semester], () =>
+  return useQuery(["courses", departmentId, semester, level], () =>
     CourseService.readMany(
       userStore.accessToken as string,
       departmentId.value,
-      semester.value
+      semester.value,
+      level?.value
     )
   );
 }

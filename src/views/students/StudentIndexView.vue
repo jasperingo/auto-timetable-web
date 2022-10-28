@@ -24,10 +24,6 @@ const NAV_IEMS: DashboardNavLinkType[] = [
         text: "View courses",
       },
       {
-        href: "/student/courses-to-register",
-        text: "View courses to register",
-      },
-      {
         href: "/student/course-registrations",
         text: "View course registrations",
       },

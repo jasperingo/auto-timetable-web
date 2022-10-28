@@ -11,7 +11,12 @@ export const CourseService = {
     return BaseService.postJson<Course>("courses", form, accessToken);
   },
 
-  readMany(accessToken: string, departmentId?: string, semester?: string) {
+  readMany(
+    accessToken: string,
+    departmentId?: string,
+    semester?: string,
+    level?: string
+  ) {
     const urlParams = new URLSearchParams();
 
     if (departmentId) {
@@ -20,6 +25,10 @@ export const CourseService = {
 
     if (semester) {
       urlParams.set("semester", semester);
+    }
+
+    if (level) {
+      urlParams.set("level", level);
     }
 
     return BaseService.query<Course[]>(
