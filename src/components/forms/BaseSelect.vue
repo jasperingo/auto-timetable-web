@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BaseSelectOptionType } from "@/models/base-select-option-type";
 import { onMounted, ref } from "vue";
 
 const emit = defineEmits(["update:modelValue", "validityChange"]);
@@ -10,10 +11,7 @@ withDefaults(
     error?: string;
     modelValue: string;
     required?: boolean;
-    options: {
-      value: string | number;
-      text: string;
-    }[];
+    options: BaseSelectOptionType[];
   }>(),
   {
     required: true,
