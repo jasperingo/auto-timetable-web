@@ -1,5 +1,5 @@
 import { useUserStore } from "@/stores/user";
-import { StudentService } from "@/web-services/student-service";
+import { CourseRegistrationService } from "@/web-services/course-registration-service";
 import type { Ref } from "vue";
 import { useQuery } from "vue-query";
 
@@ -10,8 +10,7 @@ export function useCourseRegistrationsRead(
   const userStore = useUserStore();
 
   return useQuery(["course-registrations", semester, session], () =>
-    StudentService.readManyCourseRegistrations(
-      userStore.userId,
+    CourseRegistrationService.readMany(
       userStore.accessToken as string,
       session.value,
       semester.value

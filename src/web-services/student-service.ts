@@ -1,4 +1,3 @@
-import type { CourseRegistration } from "@/models/course-registration-model";
 import type { Student } from "@/models/student-model";
 import type { UpdatePasswordType } from "@/models/update-password-type";
 import { BaseService } from "@/web-services/base-service";
@@ -42,28 +41,6 @@ export const StudentService = {
 
     return BaseService.query<Student[]>(
       `students?${urlParams.toString()}`,
-      accessToken
-    );
-  },
-
-  readManyCourseRegistrations(
-    id: string | number,
-    accessToken: string,
-    session: string,
-    semester: string
-  ) {
-    const urlParams = new URLSearchParams();
-
-    if (session) {
-      urlParams.set("session", session);
-    }
-
-    if (semester) {
-      urlParams.set("semester", semester);
-    }
-
-    return BaseService.query<CourseRegistration[]>(
-      `students/${id}/course-registrations?${urlParams.toString()}`,
       accessToken
     );
   },

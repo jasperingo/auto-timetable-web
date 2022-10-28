@@ -23,4 +23,21 @@ export const CourseRegistrationService = {
       accessToken
     );
   },
+
+  readMany(accessToken: string, session: string, semester: string) {
+    const urlParams = new URLSearchParams();
+
+    if (session) {
+      urlParams.set("session", session);
+    }
+
+    if (semester) {
+      urlParams.set("semester", semester);
+    }
+
+    return BaseService.query<CourseRegistration[]>(
+      `course-registrations?${urlParams.toString()}`,
+      accessToken
+    );
+  },
 };
