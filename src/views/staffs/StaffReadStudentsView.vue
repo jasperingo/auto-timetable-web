@@ -9,6 +9,7 @@ import SubHeader from "@/components/utils/SubHeader.vue";
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
 import { useStudentsRead } from "@/composables/students/students-read-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
+import { useSessionsSelectInputOptions } from "@/composables/utils/sessions-select-input-options-composable";
 import { computed, ref } from "vue";
 
 const HEAD_ITEMS = [
@@ -33,17 +34,7 @@ const { isLoading, isError, data, error, refetch } = useStudentsRead(
   session
 );
 
-const sessions = computed(() => {
-  const year = new Date().getFullYear();
-
-  const options: { text: string; value: number }[] = [];
-
-  for (let i = year; i > 2000; i--) {
-    options.push({ text: `${i - 1}/${i}`, value: i });
-  }
-
-  return options;
-});
+const sessions = useSessionsSelectInputOptions();
 
 const isLoadingAll = computed(
   () => departmentsFetch.isLoading.value || isLoading.value
