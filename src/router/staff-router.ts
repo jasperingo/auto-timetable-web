@@ -70,7 +70,7 @@ export const staffRouter: RouteRecordRaw[] = [
   {
     path: "departments",
     name: "staff-read-departments",
-    component: () => import("@/views/staffs/StaffReadDepartmentsView.vue"),
+    component: () => import("@/views/ReadDepartmentsView.vue"),
   },
   {
     path: "halls/create",
