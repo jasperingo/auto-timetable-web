@@ -11,6 +11,7 @@ import { useDepartmentsRead } from "@/composables/departments/departments-read-c
 import { useCoursesSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
 import { useCourseRegistrationCreate } from "@/composables/course-registrations/course-registration-create-composable";
+import { useCourseRegistrationDelete } from "@/composables/course-registrations/course-registration-delete-composable";
 import { ref, computed, watch } from "vue";
 import { useUserStore } from "@/stores/user";
 import type { BaseSelectOptionType } from "@/models/base-select-option-type";
@@ -54,6 +55,8 @@ const { isLoading, isError, data, error, refetch } = useCoursesToRegisterRead(
 );
 
 const courseRegistrationCreate = useCourseRegistrationCreate();
+
+const courseRegistrationDelete = useCourseRegistrationDelete();
 
 const levels = computed(() => {
   const studentLevel =
@@ -105,6 +108,30 @@ watch(
   }
 );
 
+watch(
+  [courseRegistrationDelete.isSuccess, courseRegistrationDelete.isError],
+  () => {
+    if (courseRegistrationDelete.isError.value) {
+      if (courseRegistrationDelete.error.value instanceof Error) {
+        toast.error(courseRegistrationDelete.error.value.message);
+      } else {
+        const webError = courseRegistrationDelete.error
+          .value as WebserviceErrorResponse;
+        if (webError.status === 400) {
+          toast.error(webError.errors[0].message);
+        } else {
+          toast.error(webError.error);
+        }
+      }
+    }
+
+    if (courseRegistrationDelete.isSuccess.value) {
+      toast.success("Course unregistered");
+      refetch.value();
+    }
+  }
+);
+
 const registerCourse = (id: number) => {
   courseId.value = id;
   courseRegistrationCreate.mutate({
@@ -115,11 +142,12 @@ const registerCourse = (id: number) => {
 
 const unregisterCourse = (id: number) => {
   courseRegId.value = id;
-  console.log("Unegister course: ", id);
+  courseRegistrationDelete.mutate(id);
 };
 
 const isCourseLoading = (id: number, regId: number) =>
-  courseRegistrationCreate.isLoading.value &&
+  (courseRegistrationCreate.isLoading.value ||
+    courseRegistrationDelete.isLoading.value) &&
   (id === courseId.value || regId === courseRegId.value);
 </script>
 
