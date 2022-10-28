@@ -17,6 +17,23 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     ],
   },
   {
+    text: "Course",
+    subLinks: [
+      {
+        href: "/student/courses",
+        text: "View courses",
+      },
+      {
+        href: "/student/courses-to-register",
+        text: "View courses to register",
+      },
+      {
+        href: "/student/courses-registerations",
+        text: "View course registrations",
+      },
+    ],
+  },
+  {
     text: "Department",
     subLinks: [
       {
@@ -31,19 +48,6 @@ const NAV_IEMS: DashboardNavLinkType[] = [
       {
         href: "/student/halls",
         text: "View halls",
-      },
-    ],
-  },
-  {
-    text: "Course",
-    subLinks: [
-      {
-        href: "/student/courses",
-        text: "View courses",
-      },
-      {
-        href: "/student/courses-registerations",
-        text: "View course registrations",
       },
     ],
   },

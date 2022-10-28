@@ -34,12 +34,17 @@ export const studentRouter: RouteRecordRaw[] = [
   },
   {
     path: "departments",
-    name: "staff-read-departments",
+    name: "student-read-departments",
     component: () => import("@/views/ReadDepartmentsView.vue"),
   },
   {
     path: "halls",
-    name: "staff-read-halls",
+    name: "student-read-halls",
     component: () => import("@/views/ReadHallsView.vue"),
+  },
+  {
+    path: "courses",
+    name: "student-read-courses",
+    component: () => import("@/views/ReadCoursesView.vue"),
   },
 ];
