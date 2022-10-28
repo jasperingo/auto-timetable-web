@@ -37,4 +37,9 @@ export const studentRouter: RouteRecordRaw[] = [
     name: "staff-read-departments",
     component: () => import("@/views/ReadDepartmentsView.vue"),
   },
+  {
+    path: "halls",
+    name: "staff-read-halls",
+    component: () => import("@/views/ReadHallsView.vue"),
+  },
 ];
