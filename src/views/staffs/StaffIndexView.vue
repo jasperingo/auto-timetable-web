@@ -15,7 +15,7 @@ const NAV_IEMS: DashboardNavLinkType[] = [
         text: "View timetables",
       },
       {
-        href: "/staff/timetable/create",
+        href: "/staff/timetables/create",
         text: "Generate timetable",
       },
       {

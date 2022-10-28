@@ -23,8 +23,13 @@ export const studentRouter: RouteRecordRaw[] = [
     component: () => import("@/views/students/StudentUpdatePasswordView.vue"),
   },
   {
-    path: "timetable/:id",
+    path: "timetables/:id",
     name: "student-read-timetable",
     component: () => import("@/views/ReadTimetableView.vue"),
+  },
+  {
+    path: "timetables/examinations/:id",
+    name: "student-read-examination",
+    component: () => import("@/views/ReadExaminationView.vue"),
   },
 ];

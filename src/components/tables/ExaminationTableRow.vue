@@ -6,7 +6,7 @@ import { computed } from "vue";
 
 const props = defineProps<{ item: Examination }>();
 
-const href = computed(() => `/staff/examination/${props.item.id}`);
+const href = computed(() => `examinations/${props.item.id}`);
 </script>
 
 <template>

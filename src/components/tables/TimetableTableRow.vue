@@ -10,7 +10,7 @@ const session = computed(
   () => `${props.item.session - 1}/${props.item.session}`
 );
 
-const href = computed(() => `timetable/${props.item.id}`);
+const href = computed(() => `timetables/${props.item.id}`);
 </script>
 
 <template>

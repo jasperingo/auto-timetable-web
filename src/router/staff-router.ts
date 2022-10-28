@@ -28,19 +28,19 @@ export const staffRouter: RouteRecordRaw[] = [
     component: () => import("@/views/staffs/StaffLogoutView.vue"),
   },
   {
-    path: "timetable/create",
+    path: "timetables/create",
     name: "staff-create-timetable",
     component: () => import("@/views/staffs/StaffCreateTimetableView.vue"),
   },
   {
-    path: "timetable/:id",
+    path: "timetables/:id",
     name: "staff-read-timetable",
     component: () => import("@/views/ReadTimetableView.vue"),
   },
   {
-    path: "examination/:id",
+    path: "timetables/examinations/:id",
     name: "staff-read-examination",
-    component: () => import("@/views/staffs/StaffReadExaminationView.vue"),
+    component: () => import("@/views/ReadExaminationView.vue"),
   },
   {
     path: "staffs/create",

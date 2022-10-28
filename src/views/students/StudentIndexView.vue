@@ -17,32 +17,6 @@ const NAV_IEMS: DashboardNavLinkType[] = [
     ],
   },
   {
-    text: "Staff",
-    subLinks: [
-      {
-        href: "/staff/staffs",
-        text: "View staffs",
-      },
-      {
-        href: "/staff/staffs/create",
-        text: "Add staff",
-      },
-    ],
-  },
-  {
-    text: "Student",
-    subLinks: [
-      {
-        href: "/staff/students",
-        text: "View students",
-      },
-      {
-        href: "/staff/students/create",
-        text: "Add student",
-      },
-    ],
-  },
-  {
     text: "Department",
     subLinks: [
       {
@@ -103,8 +77,8 @@ const userStore = useUserStore();
 
 <template>
   <DashboardLayout
-    :user-name="`${userStore.student?.firstName} ${userStore.student?.lastName}`"
     :nav-items="NAV_IEMS"
     :top-nav-items="TOP_NAV_ITEMS"
+    :user-name="`${userStore.student?.firstName} ${userStore.student?.lastName}`"
   />
 </template>
