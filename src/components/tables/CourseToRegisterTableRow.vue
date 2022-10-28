@@ -3,7 +3,7 @@ import BaseTableButtonItem from "@/components/tables/BaseTableButtonItem.vue";
 import BaseTableDataItem from "./BaseTableDataItem.vue";
 import type { Course } from "@/models/course-model";
 
-const props = defineProps<{ item: Course }>();
+const props = defineProps<{ item: Course; loading: boolean }>();
 
 const emit = defineEmits(["registerCourse", "unregisterCourse"]);
 
@@ -24,6 +24,7 @@ const onClick = () => {
   <BaseTableDataItem :text="item.semester" />
   <BaseTableDataItem :text="item.department?.name ?? ''" />
   <BaseTableButtonItem
+    :loading="loading"
     @button-clicked="onClick"
     :text="item.courseRegistrations.length > 0 ? 'Unregister' : 'Register'"
     :positive="item.courseRegistrations.length === 0"

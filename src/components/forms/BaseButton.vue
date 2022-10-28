@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SmallLoader from "@/components/loaders/SmallLoader.vue";
+
 defineProps<{ text: string; loading?: boolean }>();
 </script>
 
@@ -9,10 +11,7 @@ defineProps<{ text: string; loading?: boolean }>();
       class="block w-full font-bold bg-green-700 text-white rounded-lg p-2 hover:bg-green-500 disabled:bg-green-400"
     >
       <span v-if="!loading">{{ text }}</span>
-      <div
-        v-if="loading"
-        class="animate-spin h-6 w-6 border-4 border-t-green-700 rounded-full mx-auto"
-      ></div>
+      <SmallLoader v-if="loading" />
     </button>
   </div>
 </template>

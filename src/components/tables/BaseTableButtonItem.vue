@@ -1,7 +1,16 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ text: string | number; positive: boolean }>(), {
-  positive: true,
-});
+import SmallLoader from "@/components/loaders/SmallLoader.vue";
+
+withDefaults(
+  defineProps<{
+    text: string | number;
+    loading: boolean;
+    positive?: boolean;
+  }>(),
+  {
+    positive: true,
+  }
+);
 
 const emit = defineEmits(["buttonClicked"]);
 
@@ -10,7 +19,9 @@ const onClick = () => emit("buttonClicked");
 
 <template>
   <td class="border p-2">
+    <SmallLoader v-if="loading" />
     <button
+      v-else
       @click="onClick"
       class="block w-fit py-2 px-4 text-center text-white font-bold rounded-lg"
       :class="

@@ -10,9 +10,12 @@ import { useCoursesToRegisterRead } from "@/composables/courses/courses-to-regis
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
 import { useCoursesSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
-import { ref, computed } from "vue";
+import { useCourseRegistrationCreate } from "@/composables/course-registrations/course-registration-create-composable";
+import { ref, computed, watch } from "vue";
 import { useUserStore } from "@/stores/user";
 import type { BaseSelectOptionType } from "@/models/base-select-option-type";
+import { useToast } from "vue-toastification";
+import type { WebserviceErrorResponse } from "@/models/web-service-error-response";
 
 const HEAD_ITEMS = [
   "S/N",
@@ -24,11 +27,17 @@ const HEAD_ITEMS = [
   "Action",
 ];
 
+const courseId = ref(0);
+
+const courseRegId = ref(0);
+
 const semester = ref("");
 
 const departmentId = ref("");
 
 const level = ref("");
+
+const toast = useToast();
 
 const userStore = useUserStore();
 
@@ -43,6 +52,8 @@ const { isLoading, isError, data, error, refetch } = useCoursesToRegisterRead(
   semester,
   level
 );
+
+const courseRegistrationCreate = useCourseRegistrationCreate();
 
 const levels = computed(() => {
   const studentLevel =
@@ -70,13 +81,46 @@ const isErrorAll = computed(
 
 const errorAll = computed(() => departmentsFetch.error.value ?? error.value);
 
+watch(
+  [courseRegistrationCreate.isSuccess, courseRegistrationCreate.isError],
+  () => {
+    if (courseRegistrationCreate.isError.value) {
+      if (courseRegistrationCreate.error.value instanceof Error) {
+        toast.error(courseRegistrationCreate.error.value.message);
+      } else {
+        const webError = courseRegistrationCreate.error
+          .value as WebserviceErrorResponse;
+        if (webError.status === 400) {
+          toast.error(webError.errors[0].message);
+        } else {
+          toast.error(webError.error);
+        }
+      }
+    }
+
+    if (courseRegistrationCreate.isSuccess.value) {
+      toast.success("Course registered");
+      refetch.value();
+    }
+  }
+);
+
 const registerCourse = (id: number) => {
-  console.log("Register course: ", id);
+  courseId.value = id;
+  courseRegistrationCreate.mutate({
+    courseId: id,
+    studentId: userStore.userId,
+  });
 };
 
 const unregisterCourse = (id: number) => {
+  courseRegId.value = id;
   console.log("Unegister course: ", id);
 };
+
+const isCourseLoading = (id: number, regId: number) =>
+  courseRegistrationCreate.isLoading.value &&
+  (id === courseId.value || regId === courseRegId.value);
 </script>
 
 <template>
@@ -117,6 +161,7 @@ const unregisterCourse = (id: number) => {
         >
           <CourseToRegisterTableRow
             :item="item"
+            :loading="isCourseLoading(item.id, item.courseRegistrations[0]?.id)"
             @register-course="registerCourse"
             @unregister-course="unregisterCourse"
           />

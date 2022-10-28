@@ -30,7 +30,7 @@ export const BaseService = {
   async mutate<T>(
     path: string,
     method: "POST" | "PUT" | "DELETE",
-    form: string | FormData,
+    form?: string | FormData,
     accessToken?: string,
     isJsonBody = false
   ): Promise<WebServiceSuccessResponse<T>> {
