@@ -4,6 +4,7 @@ import ErrorLoader from "@/components/loaders/ErrorLoader.vue";
 import BaseTable from "@/components/tables/BaseTable.vue";
 import ExaminationHallTableRow from "@/components/tables/ExaminationHallTableRow.vue";
 import ExaminationInvigilatorTableRow from "@/components/tables/ExaminationInvigilatorTableRow.vue";
+import StudentTableRow from "@/components/tables/StudentTableRow.vue";
 import SubHeader from "@/components/utils/SubHeader.vue";
 import { useExaminationRead } from "@/composables/timetables/examination-read-composable";
 import { useRoute } from "vue-router";
@@ -21,6 +22,15 @@ const INVIGILATOR_HEAD_ITEMS = [
   "Staff first name",
   "Staff last name",
   "Staff department name",
+];
+
+const STUDENT_HEAD_ITEMS = [
+  "S/N",
+  "First name",
+  "Last name",
+  "Matriculation number",
+  "Session",
+  "Department",
 ];
 
 const route = useRoute();
@@ -64,6 +74,16 @@ const { isLoading, isError, data, error, refetch } = useExaminationRead(
           v-slot="{ item }"
         >
           <ExaminationInvigilatorTableRow :item="item" />
+        </BaseTable>
+
+        <BaseTable
+          v-if="(data?.data.course.courseRegistrations.length ?? 0) > 0"
+          caption="Students"
+          :head-items="STUDENT_HEAD_ITEMS"
+          :items="data?.data.course.courseRegistrations ?? []"
+          v-slot="{ item }"
+        >
+          <StudentTableRow :item="item.student" />
         </BaseTable>
       </div>
     </div>

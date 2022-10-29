@@ -10,6 +10,6 @@ defineProps<{ item: Student }>();
   <BaseTableDataItem :text="item.firstName" />
   <BaseTableDataItem :text="item.lastName" />
   <BaseTableDataItem :text="item.matriculationNumber" />
-  <BaseTableDataItem :text="item.joinedAt" />
+  <BaseTableDataItem :text="`${item.joinedAt - 1}/${item.joinedAt}`" />
   <BaseTableDataItem :text="item.department?.name ?? ''" />
 </template>

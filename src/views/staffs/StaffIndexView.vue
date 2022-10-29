@@ -20,7 +20,7 @@ const NAV_IEMS: DashboardNavLinkType[] = [
       },
       {
         href: "/staff/analysis",
-        text: "View analyis",
+        text: "View analysis",
       },
     ],
   },
