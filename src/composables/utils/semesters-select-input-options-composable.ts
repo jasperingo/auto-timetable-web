@@ -1,7 +1,7 @@
 import { Semester } from "@/models/semester-enum";
 import { computed } from "vue";
 
-export function useCoursesSelectInputOptions() {
+export function useSemestersSelectInputOptions() {
   return computed(() =>
     Object.values(Semester).map((k) => ({
       value: k,
