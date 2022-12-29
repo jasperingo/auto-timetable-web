@@ -8,7 +8,7 @@ import ListFilter from "@/components/utils/ListFilter.vue";
 import SubHeader from "@/components/utils/SubHeader.vue";
 import { useCoursesRead } from "@/composables/courses/courses-read-composable";
 import { useDepartmentsRead } from "@/composables/departments/departments-read-composable";
-import { useCoursesSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
+import { useSemestersSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
 import { useDepartmentsSelectInputOptions } from "@/composables/utils/departments-select-input-options-composable";
 import { useCourseRegistrationCreate } from "@/composables/course-registrations/course-registration-create-composable";
 import { useCourseRegistrationDelete } from "@/composables/course-registrations/course-registration-delete-composable";
@@ -44,7 +44,7 @@ const userStore = useUserStore();
 
 const departmentsFetch = useDepartmentsRead();
 
-const semesters = useCoursesSelectInputOptions();
+const semesters = useSemestersSelectInputOptions();
 
 const departments = useDepartmentsSelectInputOptions(departmentsFetch.data);
 

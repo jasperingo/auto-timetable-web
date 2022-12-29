@@ -5,7 +5,7 @@ import ErrorLoader from "@/components/loaders/ErrorLoader.vue";
 import BaseTable from "@/components/tables/BaseTable.vue";
 import ListFilter from "@/components/utils/ListFilter.vue";
 import SubHeader from "@/components/utils/SubHeader.vue";
-import { useCoursesSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
+import { useSemestersSelectInputOptions } from "@/composables/utils/semesters-select-input-options-composable";
 import { useCourseRegistrationsRead } from "@/composables/course-registrations/course-registrations-read-composable";
 import { useSessionsSelectInputOptions } from "@/composables/utils/sessions-select-input-options-composable";
 import { ref } from "vue";
@@ -17,7 +17,7 @@ const semester = ref("");
 
 const session = ref("");
 
-const semesters = useCoursesSelectInputOptions();
+const semesters = useSemestersSelectInputOptions();
 
 const sessions = useSessionsSelectInputOptions();
 
